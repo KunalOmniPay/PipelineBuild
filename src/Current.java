@@ -3,7 +3,7 @@ public class Current {
 	private String companyName, typeOfBusiness, website, contactName;
 
 	public Current(String companyName, String typeOfBusiness, String website, String contactName) {
-		super();
+		
 		this.companyName = companyName;
 		this.typeOfBusiness = typeOfBusiness;
 		this.website = website;
