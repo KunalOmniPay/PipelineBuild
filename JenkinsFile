@@ -7,10 +7,14 @@ pipeline{
   }
   stages {
     stage('Build'){
-      steps{
-        sh 'mvn compile'
-        sh 'mvn package'
-      }
+       steps {
+                withSonarQubeEnv('sonar-server') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven:'Maven 3.5') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
      }
     stage('Test'){
       steps{
@@ -22,13 +26,7 @@ pipeline{
      archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
      }
      }
-       stage('SonarQube analysis') {
-       steps{
-    withSonarQubeEnv(credentialsId: 'b96723e9-a53e-4a1c-8eef-90c5f2f4591d', installationName: 'sonar-server') { // You can override the credential to be used
-      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-      }
-    }
-  }
+       
       
   
   }
