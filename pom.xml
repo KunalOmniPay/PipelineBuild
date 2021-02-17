@@ -39,5 +39,5 @@
   <sonar.projectKey>zeddboy_PipelineBuild</sonar.projectKey>
   <sonar.organization>mindtreeorchard</sonar.organization>
   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-</properties
+  </properties>
 </project>
