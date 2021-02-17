@@ -22,6 +22,12 @@ pipeline{
      archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
      }
      }
+     stage('SonarQube analysis') {
+    def scannerHome = tool 'SonarScanner 4.0';
+    withSonarQubeEnv('sonar-server') { 
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
       
   }
   }
